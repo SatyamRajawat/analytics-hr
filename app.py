@@ -56,8 +56,11 @@ def saved_artifacts():
 # ============================ Calling html page=======================================
 @app.route('/')
 def index():
-    print(__Department)
-    return render_template('index.html', var=Department)
+     with open("./model/columns.json", "r") as f:
+        data_columns = json.load(f)['data_columns']
+        dep = data_columns[5:]
+    print(dep)
+    return render_template('index.html', var=dep)
 
 
 @app.route('/employee', methods=['POST'])
