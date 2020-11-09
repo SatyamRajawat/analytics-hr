@@ -76,5 +76,4 @@ def form_post():
 
 
 if __name__ == "__main__":
-    saved_artifacts()
     app.run(debug=True)
