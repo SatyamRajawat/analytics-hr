@@ -18,6 +18,7 @@ with open('./model/model_employee.pkl', 'rb') as f:
 
 def predict_employee(Department,satisfaction_level,average_montly_hours,promotion_last_5years,Work_accident,salary_ord):
     try:
+       
         loc_index = data_columns.index(Department.lower())
     except:
         loc_index = -1
@@ -30,7 +31,7 @@ def predict_employee(Department,satisfaction_level,average_montly_hours,promotio
     x[4] = salary_ord
     if loc_index >= 0:
         x[loc_index] = 1
-
+    print([x])
     prediction =  model.predict([x])[0]
     print("Predict data model is satyam ",prediction)
     # if prediction == 1:
@@ -50,12 +51,13 @@ def saved_artifacts():
     print(__Department)
     print("loading saved artifacts...done")
 
- 
+
+
 # ============================ Calling html page=======================================
 @app.route('/')
 def index():
-    dep = __Department
-    return render_template('index.html', var=dep)
+    print(__Department)
+    return render_template('index.html', var=Department)
 
 
 @app.route('/employee', methods=['POST'])
