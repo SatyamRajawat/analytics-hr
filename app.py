@@ -42,7 +42,7 @@ def predict_employee(Department,satisfaction_level,average_montly_hours,promotio
 def saved_artifacts():
     print("loading saved artifacts...start")
     global  data_columns
-    global  Department
+    global  __Department
 
     with open("./model/columns.json", "r") as f:
         data_columns = json.load(f)['data_columns']
