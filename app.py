@@ -13,17 +13,18 @@ with open('./model/model_employee.pkl', 'rb') as f:
 
 
 
-__data_columns = None
 
 #  =============== Loading functions here ====================
 
 def predict_employee(Department,satisfaction_level,average_montly_hours,promotion_last_5years,Work_accident,salary_ord):
+    with open("./model/columns.json", "r") as f:
+        data_columns = json.load(f)['data_columns']
     try:
        
         loc_index = __data_columns.index(Department.lower())
     except:
         loc_index = -1
-    s = len(__data_columns)
+    s = len(data_columns)
     x = np.zeros(s)
     x[0] = satisfaction_level
     x[1] = average_montly_hours
@@ -40,17 +41,6 @@ def predict_employee(Department,satisfaction_level,average_montly_hours,promotio
     # else :
     #     data = 'Employee will continue in the Organization '
     return prediction
-
-def saved_artifacts():
-    print("loading saved artifacts...start")
-    global  __data_columns
-    global  Department
-
-    with open("./model/columns.json", "r") as f:
-        __data_columns = json.load(f)['data_columns']
-        Department = data_columns[5:]
-    print(Department)
-    print("loading saved artifacts...done")
 
 
 
@@ -75,7 +65,10 @@ def form_post():
     print("Predicting model start ........")
     data = predict_employee(department,satisfaction_level,average_montly_hours,promotion_last_5years,Work_accident,salary_ord)
     print('data predicted.........satya',data)
-    dep = __Department
+    
+    with open("./model/columns.json", "r") as f:
+        data_columns = json.load(f)['data_columns']
+        dep = data_columns[5:]
     return render_template('index.html',data=data,var=dep, output=True)
 
 
