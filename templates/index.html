@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>HR Prediction</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='app.css') }}">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#myPage">
+		  <img src="./static/image/download.png" alt="">
+	  </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+<!--      <ul class="nav navbar-nav navbar-right">-->
+<!--        <li><a href="#about">ABOUT</a></li>-->
+<!--        <li><a href="#services">SERVICES</a></li>-->
+<!--        <li><a href="#portfolio">PORTFOLIO</a></li>-->
+<!--        <li><a href="#pricing">PRICING</a></li>-->
+<!--        <li><a href="#contact">CONTACT</a></li>-->
+<!--      </ul>-->
+    </div>
+
+  </div>
+
+</nav>
+
+<div class="container-fluid c1"><h3>Individual HR Analytics Application </h3></div>
+<!-- Container (About Section) -->
+<div id="about" class="container-fluid" style="background-image: url({{ url_for('static', filename='image/back.jpg') }})">
+	<h2 style="text-align: center;">Provide Details About Employee</h2>
+	<form method="POST" action="/employee" enctype="multipart/form-data">
+	  <div class="row ">
+			<br>
+		  <table align="center">
+			  <tr>
+				  <td><label for="Department">Department</label></td>
+				  <td>
+					  <select id="Department" name="Department" required>
+						  <option value="">Select Department</option>
+						  {{ var }}
+						  {% for i in var %}
+						  <option value="{{ i }}">{{ i }} </option>
+						  {% endfor %}
+					  </select>
+				  </td>
+			  </tr>
+			  <tr>
+				  <td><label for="satisfaction_level">Satisfaction Label</label></td>
+				  <td><input type="number" name="satisfaction_level" id="satisfaction_level" min="0"  max="1" step="0.01" placeholder="0" required></td>
+			  </tr>
+			  <tr>
+				  <td><label for="average_montly_hours">Average Monthly Hours</label></td>
+				  <td><input type="number" name="average_montly_hours" id="average_montly_hours"  min="0"  step="1" placeholder="0" required></td>
+			  </tr>
+			  <tr>
+				  <td><label for="promotion_last_5years">Promotion In Last 5years</label></td>
+				  <td>
+					  <input type="radio" name = "promotion_last_5years" value="1" required> Yes
+					  <input type="radio" name = "promotion_last_5years" value="0"> No
+				  </td>
+			  </tr>
+			  <tr>
+				  <td><label for="Work_accident">Work Accident</label></td>
+				  <td>
+					  <input type="radio" name = "Work_accident" value="1" required> Yes
+					  <input type="radio" name = "Work_accident" value="0" > No
+				  </td>
+			  </tr>
+			  <tr>
+				  <td><label for="salary_ord">Salary Label</label></td>
+				  <td>
+					  <input type="radio" name = "salary_ord" value="1" required> Low
+					  <input type="radio" name = "salary_ord" value="2"> Medium
+					  <input type="radio" name = "salary_ord" value="3"> High
+				  </td>
+			  </tr>
+			  <tr>
+				  <td colspan="2">
+					  <button type="submit" name="action" class="btn btn-primary">Predict Employee Details</button>
+				  </td>
+
+			  </tr>
+
+		  </table>
+	  </div>
+	</form>
+	{{ var.value }}
+
+	{% if output %}
+		<div class="row">
+			{% if data == 1 %}
+				<h2 style="color:red; text-align:center;">Predicted Result : Employee may left the Organization </h2>
+			{% else %}
+				<h2 style="color:green; text-align:center;">Predicted Result : Employee will continue in the Organization</h2>
+			{% endif %}
+		</div>
+	{% endif %}
+
+</div>
+
+<footer class="container-fluid text-center">
+  <a href="#myPage" title="To Top">
+    <span style="float:right;" class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  </footer>
+
+
+
+</body>
+</html>
