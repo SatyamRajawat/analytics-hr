@@ -46,15 +46,15 @@ def saved_artifacts():
 
     with open("./model/columns.json", "r") as f:
         data_columns = json.load(f)['data_columns']
-        Department = data_columns[5:]
-    print(Department)
+        __Department = data_columns[5:]
+    print(__Department)
     print("loading saved artifacts...done")
 
  
 # ============================ Calling html page=======================================
 @app.route('/')
 def index():
-    dep = Department
+    dep = __Department
     return render_template('index.html', var=dep)
 
 
@@ -70,7 +70,7 @@ def form_post():
     print("Predicting model start ........")
     data = predict_employee(department,satisfaction_level,average_montly_hours,promotion_last_5years,Work_accident,salary_ord)
     print('data predicted.........satya',data)
-    dep = Department
+    dep = __Department
     return render_template('index.html',data=data,var=dep, output=True)
 
 
