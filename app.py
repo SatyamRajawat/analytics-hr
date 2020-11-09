@@ -13,16 +13,17 @@ with open('./model/model_employee.pkl', 'rb') as f:
 
 
 
+__data_columns = None
 
 #  =============== Loading functions here ====================
 
 def predict_employee(Department,satisfaction_level,average_montly_hours,promotion_last_5years,Work_accident,salary_ord):
     try:
        
-        loc_index = data_columns.index(Department.lower())
+        loc_index = __data_columns.index(Department.lower())
     except:
         loc_index = -1
-    s = len(data_columns)
+    s = len(__data_columns)
     x = np.zeros(s)
     x[0] = satisfaction_level
     x[1] = average_montly_hours
@@ -42,13 +43,13 @@ def predict_employee(Department,satisfaction_level,average_montly_hours,promotio
 
 def saved_artifacts():
     print("loading saved artifacts...start")
-    global  data_columns
-    global  __Department
+    global  __data_columns
+    global  Department
 
     with open("./model/columns.json", "r") as f:
-        data_columns = json.load(f)['data_columns']
-        __Department = data_columns[5:]
-    print(__Department)
+        __data_columns = json.load(f)['data_columns']
+        Department = data_columns[5:]
+    print(Department)
     print("loading saved artifacts...done")
 
 
