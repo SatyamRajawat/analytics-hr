@@ -50,17 +50,17 @@ def saved_artifacts():
     print(Department)
     print("loading saved artifacts...done")
 
-# def data_columns():
-#     return data_columns
-# def Department():
-#     return Department
+ def data_columns():
+     return data_columns
+ def Department():
+     return Department
 
 
 # ============================ Calling html page=======================================
 @app.route('/')
 def index():
-
-    return render_template('index.html', var=Department)
+    dep = Department
+    return render_template('index.html', var=dep)
 
 
 @app.route('/employee', methods=['POST'])
@@ -75,7 +75,8 @@ def form_post():
     print("Predicting model start ........")
     data = predict_employee(department,satisfaction_level,average_montly_hours,promotion_last_5years,Work_accident,salary_ord)
     print('data predicted.........satya',data)
-    return render_template('index.html',data=data,var=Department, output=True)
+    dep = Department
+    return render_template('index.html',data=data,var=dep, output=True)
 
 
 
