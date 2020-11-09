@@ -50,12 +50,7 @@ def saved_artifacts():
     print(Department)
     print("loading saved artifacts...done")
 
- def data_columns():
-     return data_columns
- def Department():
-     return Department
-
-
+ 
 # ============================ Calling html page=======================================
 @app.route('/')
 def index():
