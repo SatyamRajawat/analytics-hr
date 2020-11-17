@@ -29,13 +29,15 @@
 	  </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-<!--      <ul class="nav navbar-nav navbar-right">-->
-<!--        <li><a href="#about">ABOUT</a></li>-->
-<!--        <li><a href="#services">SERVICES</a></li>-->
-<!--        <li><a href="#portfolio">PORTFOLIO</a></li>-->
-<!--        <li><a href="#pricing">PRICING</a></li>-->
-<!--        <li><a href="#contact">CONTACT</a></li>-->
-<!--      </ul>-->
+     <ul class="nav navbar-nav navbar-right">
+		
+	   <li><a class="nav-link page-scroll" href="#home">HOME</a></li>
+	   
+       <li><a class="nav-link page-scroll" href="#visualize">VISUALIZE</a></li>
+       <!-- <li><a href="#portfolio">PORTFOLIO</a></li>
+       <li><a href="#pricing">PRICING</a></li>
+       <li><a href="#contact">CONTACT</a></li> -->
+     </ul>
     </div>
 
   </div>
@@ -44,7 +46,7 @@
 
 <div class="container-fluid c1"><h3>Individual HR Analytics Application </h3></div>
 <!-- Container (About Section) -->
-<div id="about" class="container-fluid" style="background-image: url({{ url_for('static', filename='image/back.jpg') }})">
+<div id="home" class="container-fluid" style="background-image: url({{ url_for('static', filename='image/back.jpg') }})">
 	<h2 style="text-align: center;">Provide Details About Employee</h2>
 	<form method="POST" action="/employee" enctype="multipart/form-data">
 	  <div class="row ">
@@ -116,6 +118,38 @@
 	{% endif %}
 
 </div>
+
+<!-- Visualization Section  -->
+<div id="visualize" class="container-fluid text-center" style="background-color: azure; ">
+	<div class="container-fluid">
+		<h2 style="color: darkviolet;">VISUALIZATION</h2>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h4>Visual Of Salary and left</h4>
+				<img src="/static/image/sal_left.png" height="400px" width='400px'>
+			</div>
+			<div class="col-md-6">
+				<h4>Visual Of Department and left</h4>
+				<img src="/static/image/dep_left.png" height="400px" width='400px'>
+			</div>
+		</div>
+		<br><br>
+		<div class="row">
+			<div class="col-md-6">
+				<h4>Visual Of Salary</h4>
+				<img src="/static/image/sal.png" height="400px" width='400px'>
+			</div>
+			<div class="col-md-6">
+				<h4>Visual Of left</h4>
+				<img src="/static/image/left.png" height="400px" width='400px'>
+			</div>
+		</div>
+	</div>
+	
+	
+  </div>
 
 <footer class="container-fluid text-center">
   <a href="#myPage" title="To Top">
